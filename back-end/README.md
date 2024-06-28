@@ -24,3 +24,35 @@ Se valorara:
 
 **Nice to Do:**
 - Usar una arquitectura de DDD.
+
+---
+
+# Dominio
+Leyendo [cosechas.csv](./cosechas.csv) se obtienen las siguientes columnas:
+
+- Mail Agricultor
+- Nombre Agricultor
+- Apellido Agricultor
+- Mail Cliente
+- Nombre Cliente
+- Apellido Cliente
+- Nombre Campo
+- Ubicación de Campo
+- Fruta Cosechada
+- Variedad Cosechada
+
+Esto, junto con el enunciado, puedo identificar los siguientes modelos y sus propiedades:
+
+```typescript
+type Field = { name: string, location: string, farmer: Farmer }
+
+type Farmer = { firstName: string, lastName: string, email: string }
+
+type Crop = { client: Client, fruit: Fruit, variety: Variety, field: Field }
+
+type Client = { firstName: string, lastName: string, email: string }
+
+type Fruit = string
+
+type Variety = string
+```
