@@ -65,3 +65,9 @@ Dado de que la tarea no cuenta con código inicial con qué trabajar, debo elegi
 Si este se tratase de un proyecto que debería trabajar en el largo plazo, eligiría un framework, como NestJS o Sails.js. Como este no es el caso, y aprender un framework require una curva de aprendizaje importante, procederé a elegir librerías en la medida de que lo requira.
 
 Así, iniciaré un nuevo proyecto de NodeJS, TypeScript, y Vitest.
+
+Decidí usar [Hono](https://hono.dev/) para armar la API; corrí `npm create hono@latest my-app` lo que me generó un proyecto de ejemplo.
+
+Existen los siguientes comandos:
+- `npm run dev` monta un servidor en http://localhost:3000/
+- `npm test` corre los tests en _watch mode_ con [Vitest](https://vitest.dev/)
