@@ -56,3 +56,12 @@ type Fruit = string
 
 type Variety = string
 ```
+
+
+# Implementando la solución
+
+Dado de que la tarea no cuenta con código inicial con qué trabajar, debo elegir si utilizo un framework existente, o si armo un framework a la medida.
+
+Si este se tratase de un proyecto que debería trabajar en el largo plazo, eligiría un framework, como NestJS o Sails.js. Como este no es el caso, y aprender un framework require una curva de aprendizaje importante, procederé a elegir librerías en la medida de que lo requira.
+
+Así, iniciaré un nuevo proyecto de NodeJS, TypeScript, y Vitest.
