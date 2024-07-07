@@ -7,12 +7,14 @@ import {
 import config from './mikro-orm.config.js'
 import { Fruit } from './modules/fruit/fruit.entity.js'
 import { Variety } from './modules/variety/variety.entity.js'
+import { Client } from './modules/client/client.entity.js'
 
 export interface Services {
   orm: MikroORM
   em: EntityManager
   fruit: EntityRepository<Fruit>
   variety: EntityRepository<Variety>
+  client: EntityRepository<Client>
 }
 
 let cache: Services
@@ -32,5 +34,6 @@ export async function initORM(options?: Options): Promise<Services> {
     em: orm.em,
     fruit: orm.em.getRepository(Fruit),
     variety: orm.em.getRepository(Variety),
+    client: orm.em.getRepository(Client),
   })
 }

@@ -1,0 +1,18 @@
+import { Entity, PrimaryKey, Property } from '@mikro-orm/core'
+
+@Entity()
+export class Client {
+
+  @PrimaryKey()
+  id!: number
+
+  @Property()
+  firstName!: string
+
+  @Property()
+  lastName!: string
+
+  @Property()
+  email!: string
+
+}

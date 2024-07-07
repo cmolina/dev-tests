@@ -2,6 +2,7 @@ import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import { app as fruits } from './modules/fruit/fruit.routes.js'
 import { app as varieties } from './modules/variety/variety.routes.js'
+import { app as clients } from './modules/client/client.routes.js'
 import { initORM } from './db.js'
 import { RequestContext } from '@mikro-orm/core'
 
@@ -18,6 +19,7 @@ export async function bootstrap(test = false, port = 3000) {
 
   app.route('/fruits', fruits)
   app.route('/varieties', varieties)
+  app.route('/clients', clients)
 
   console.log(`Server is running on port ${port}`)
 
