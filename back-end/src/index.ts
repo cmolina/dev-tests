@@ -1,8 +1,8 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
-import { app as fruits } from './modules/fruit/fruit.routes.js'
-import { app as varieties } from './modules/variety/variety.routes.js'
-import { app as clients } from './modules/client/client.routes.js'
+import fruits from './modules/fruit/fruit.routes.js'
+import varieties from './modules/variety/variety.routes.js'
+import clients from './modules/client/client.routes.js'
 import { initORM } from './db.js'
 import { RequestContext } from '@mikro-orm/core'
 

@@ -2,7 +2,7 @@ import { Hono } from 'hono'
 import { initORM } from '../../db.js'
 import { Client } from './client.entity.js'
 
-export const app = new Hono()
+const app = new Hono()
 
 app.get('/', async (c) => {
   const db = await initORM()
@@ -17,3 +17,5 @@ app.post('/', async (c) => {
   await db.em.flush()
   return c.json(client, 201)
 })
+
+export default app
