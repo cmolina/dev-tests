@@ -4,11 +4,18 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "strict": true,
+    "outDir": "dist",
+    "declaration": true,
+    "experimentalDecorators": true,
     "skipLibCheck": true,
     "types": [
       "node"
     ],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
+  },
+  "ts-node": {
+    "esm": true,
+    "transpileOnly": true
   }
 }

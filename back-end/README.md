@@ -69,5 +69,9 @@ Así, iniciaré un nuevo proyecto de NodeJS, TypeScript, y Vitest.
 Decidí usar [Hono](https://hono.dev/) para armar la API; corrí `npm create hono@latest my-app` lo que me generó un proyecto de ejemplo.
 
 Existen los siguientes comandos:
-- `npm run dev` monta un servidor en http://localhost:3000/
+- `npm start` monta un servidor en http://localhost:3000/
 - `npm test` corre los tests en _watch mode_ con [Vitest](https://vitest.dev/)
+
+Hasta ahora he hecho pequeños commits, escribiendo el mínimo código posible para listar y crear _Fruits_. Ahora ha llegado el momento de persistir la información en una base de datos.
+
+Nuevamente tengo que elegir cómo interactuar con sqlite: si usar un driver de bajo nivel, o un ORM. Inicialmente decidí usar `better-sqlite3`, pero rápidamente noté que estaba armando mi propio ORM; así que elegí [mikro-orm](https://mikro-orm.io/). Esta librería requiere muchos cambios en el proyecto para empezar a utilizarla; sin embargo estimo que implementar los siguientes endpoints debiese ser más fácil.
