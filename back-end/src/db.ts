@@ -9,6 +9,7 @@ import { Fruit } from './modules/fruit/fruit.entity.js'
 import { Variety } from './modules/variety/variety.entity.js'
 import { Client } from './modules/client/client.entity.js'
 import { Farmer } from './modules/farmer/farmer.entity.js'
+import { Field } from './modules/field/field.entity.js'
 
 export interface Services {
   orm: MikroORM
@@ -17,6 +18,7 @@ export interface Services {
   variety: EntityRepository<Variety>
   client: EntityRepository<Client>
   farmer: EntityRepository<Farmer>
+  field: EntityRepository<Field>
 }
 
 let cache: Services
@@ -38,5 +40,6 @@ export async function initORM(options?: Options): Promise<Services> {
     variety: orm.em.getRepository(Variety),
     client: orm.em.getRepository(Client),
     farmer: orm.em.getRepository(Farmer),
+    field: orm.em.getRepository(Field),
   })
 }
