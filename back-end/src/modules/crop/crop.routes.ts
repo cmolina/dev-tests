@@ -5,6 +5,7 @@ import { Crop } from './crop.entity.js'
 import { farmerSchema } from '../farmer/farmer.schema.js'
 import { clientSchema } from '../client/client.schema.js'
 import { fieldSchema } from '../field/field.schema.js'
+import { fruitSchema } from '../fruit/fruit.schema.js'
 
 const app = new Hono()
 
@@ -41,7 +42,7 @@ app.post('/bulk-import', async (c) => {
       const farmer = await db.farmer.upsert(farmerSchema.parse({ email: farmerEmail, firstName: farmerFirstName, lastName: farmerLastName }))
       const field = await db.field.upsert(fieldSchema.parse({ name: fieldName, location: fieldLocation, farmer }))
       const client = await db.client.upsert(clientSchema.parse({ email: clientEmail, firstName: clientFirstName, lastName: clientLastName }))
-      const fruit = await db.fruit.upsert({ name: fruitName, variety: fruitVariety })
+      const fruit = await db.fruit.upsert(fruitSchema.parse({ name: fruitName, variety: fruitVariety }))
 
       const crop = await db.crop.create({ client, fruit, field })
       crops.push(crop)

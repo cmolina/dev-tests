@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import { initORM } from '../../db.js'
-import { Fruit } from './fruit.entity.js'
+import { fruitSchema } from './fruit.schema.js'
 
 const app = new Hono()
 
@@ -12,7 +12,7 @@ app.get('/', async (c) => {
 
 app.post('/', async (c) => {
   const db = await initORM()
-  const body = await c.req.json<Fruit>()
+  const body = fruitSchema.parse(await c.req.json())
   const fruit = db.fruit.create(body)
   await db.em.flush()
   return c.json(fruit, 201)
