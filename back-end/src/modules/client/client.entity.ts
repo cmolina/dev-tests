@@ -12,7 +12,7 @@ export class Client {
   @Property()
   lastName!: string
 
-  @Property()
+  @Property({ unique: true })
   email!: string
 
 }
