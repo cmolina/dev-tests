@@ -75,3 +75,5 @@ Existen los siguientes comandos:
 Hasta ahora he hecho pequeños commits, escribiendo el mínimo código posible para listar y crear _Fruits_. Ahora ha llegado el momento de persistir la información en una base de datos.
 
 Nuevamente tengo que elegir cómo interactuar con sqlite: si usar un driver de bajo nivel, o un ORM. Inicialmente decidí usar `better-sqlite3`, pero rápidamente noté que estaba armando mi propio ORM; así que elegí [mikro-orm](https://mikro-orm.io/). Esta librería requiere muchos cambios en el proyecto para empezar a utilizarla; sin embargo estimo que implementar los siguientes endpoints debiese ser más fácil.
+
+Ahora que tengo endpoints para leer y crear cada uno de los objetos con los que estaré trabajando, implementaré las restricciones del modelo. Idealmente las restricciones estarán a nivel de la BD.

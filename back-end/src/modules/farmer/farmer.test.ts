@@ -32,3 +32,13 @@ it('should persist new farmers', async () => {
   expect(res.status).toBe(200)
   expect(await res.json()).toContainEqual(expect.objectContaining({ email: 'sschuppe@email.com', firstName: 'Salvador', lastName: 'Schuppe' }))
 })
+
+it('should reject duplicated emails', async () => {
+  const body = JSON.stringify({ email: 'taken@email.com', firstName: 'Already', lastName: 'Taken' } as Farmer)
+  await app.request('/farmers', { method: 'post', body })
+
+  const res = await app.request('/farmers', { method: 'post', body })
+
+  expect(res.status).toBe(400)
+  expect(await res.json()).toEqual({ errors: [{ email: 'Duplicated' }] })
+})

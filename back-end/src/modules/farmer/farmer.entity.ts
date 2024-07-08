@@ -12,7 +12,7 @@ export class Farmer {
   @Property()
   lastName!: string
 
-  @Property()
+  @Property({ unique: true })
   email!: string
 
 }

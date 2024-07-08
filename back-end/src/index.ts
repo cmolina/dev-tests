@@ -7,7 +7,7 @@ import farmers from './modules/farmer/farmer.routes.js'
 import fields from './modules/field/field.routes.js'
 import crops from './modules/crop/crop.routes.js'
 import { initORM } from './db.js'
-import { RequestContext } from '@mikro-orm/core'
+import { RequestContext, UniqueConstraintViolationException } from '@mikro-orm/core'
 
 export async function bootstrap(test = false, port = 3000) {
   const db = await initORM()
@@ -19,6 +19,13 @@ export async function bootstrap(test = false, port = 3000) {
 
   app.use('*', (c, next) => RequestContext.create(db.em, next))
   app.on('close', '*', () => db.orm.close())
+  app.onError((error, c) => {
+    if (error instanceof UniqueConstraintViolationException) {
+      const column = error.message.match(/UNIQUE constraint failed: \S+\.(\S+)/)![1]
+      return c.json({ errors: [{ [column]: 'Duplicated' }] }, 400)
+    }
+    return c.text(String(error), 500)
+  })
 
   app.route('/fruits', fruits)
   app.route('/varieties', varieties)
