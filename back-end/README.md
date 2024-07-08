@@ -79,3 +79,5 @@ Nuevamente tengo que elegir cómo interactuar con sqlite: si usar un driver de b
 Ahora que tengo endpoints para leer y crear cada uno de los objetos con los que estaré trabajando, implementaré las restricciones del modelo. Idealmente las restricciones estarán a nivel de la BD.
 
 La última restricción, _La combinación fruta variedad debe ser única_, no hace referencia a ningún otro objecto, lo que me hace suponer que `Fruit` debería incluir la propiedad `variety`, en lugar de ser una entidad independiente. Haré el refactor correspondiente.
+
+Para el requerimiento de la carga de un CSV, agregaré un nuevo endpoint, POST `/crops/bulk-import`.

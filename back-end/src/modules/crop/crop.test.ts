@@ -1,3 +1,4 @@
+/// <reference types='vite/client' />
 import { expect, it, beforeAll } from 'vitest'
 import { type Hono } from 'hono'
 import { bootstrapTest } from '../../test-utils.js'
@@ -51,4 +52,19 @@ it('should persist new crops', async () => {
 
   expect(res.status).toBe(200)
   expect(await res.json()).toContainEqual(expect.objectContaining({ client, fruit, field }))
+})
+
+it('should bulk import from csv', async () => {
+  const body = new Blob([(await import('../../../cosechas.csv?raw')).default], { type: 'text/csv' });
+
+  const res = await app.request('/crops/bulk-import', { method: 'post', body })
+
+  expect(res.status).toBe(201)
+  const { crops, errors } = await res.json() as { crops: Crop[], errors: string[] }
+  expect(errors).toHaveLength(0)
+  expect(crops[0]).toMatchObject({
+    client: { firstName: 'Lea', lastName: 'Cummerata', email: 'lcummerata@email.com' },
+    fruit: { name: 'brocoli', variety: 'large' },
+    field: { name: 'voluptatem ', location: '139 Lucio Tunnel', farmer: { firstName: 'Madison', lastName: 'Treutel', email: 'mtreutel@email.com' } },
+  })
 })
