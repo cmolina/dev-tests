@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { initORM } from '../../db.js'
 import { Client } from './client.entity.js'
+import { clientSchema } from './client.schema.js'
 
 const app = new Hono()
 
@@ -12,7 +13,7 @@ app.get('/', async (c) => {
 
 app.post('/', async (c) => {
   const db = await initORM()
-  const body = await c.req.json<Client>()
+  const body = clientSchema.parse(await c.req.json())
   const client = db.client.create(body)
   await db.em.flush()
   return c.json(client, 201)

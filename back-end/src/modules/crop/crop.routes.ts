@@ -1,8 +1,9 @@
 import { Hono } from 'hono'
+import { ZodError } from 'zod'
 import { initORM } from '../../db.js'
 import { Crop } from './crop.entity.js'
 import { farmerSchema } from '../farmer/farmer.schema.js'
-import { ZodError } from 'zod'
+import { clientSchema } from '../client/client.schema.js'
 
 const app = new Hono()
 
@@ -38,7 +39,7 @@ app.post('/bulk-import', async (c) => {
     try {
       const farmer = await db.farmer.upsert(farmerSchema.parse({ email: farmerEmail, firstName: farmerFirstName, lastName: farmerLastName }))
       const field = await db.field.upsert({ name: fieldName, location: fieldLocation, farmer })
-      const client = await db.client.upsert({ email: clientEmail, firstName: clientFirstName, lastName: clientLastName })
+      const client = await db.client.upsert(clientSchema.parse({ email: clientEmail, firstName: clientFirstName, lastName: clientLastName }))
       const fruit = await db.fruit.upsert({ name: fruitName, variety: fruitVariety })
 
       const crop = await db.crop.create({ client, fruit, field })
