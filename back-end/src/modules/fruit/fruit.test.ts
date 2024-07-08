@@ -31,3 +31,13 @@ it('should persist new fruits', async () => {
   expect(res.status).toBe(200)
   expect(await res.json()).toContainEqual(expect.objectContaining({ name: 'Naranja' }))
 })
+
+it('should reject duplicated names', async () => {
+  const body = JSON.stringify({ name: 'apple' })
+  await app.request('/fruits', { method: 'post', body })
+
+  const res = await app.request('/fruits', { method: 'post', body })
+
+  expect(res.status).toBe(400)
+  expect(await res.json()).toEqual({ errors: { name: ['Duplicated'] } })
+})

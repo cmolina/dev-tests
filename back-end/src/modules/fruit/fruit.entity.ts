@@ -6,7 +6,7 @@ export class Fruit {
   @PrimaryKey()
   id!: number
 
-  @Property()
+  @Property({ unique: true })
   name!: string
 
 }
