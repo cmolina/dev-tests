@@ -21,8 +21,12 @@ export async function bootstrap(test = false, port = 3000) {
   app.on('close', '*', () => db.orm.close())
   app.onError((error, c) => {
     if (error instanceof UniqueConstraintViolationException) {
-      const column = error.message.match(/UNIQUE constraint failed: \S+\.(\S+)/)![1]
-      return c.json({ errors: [{ [column]: 'Duplicated' }] }, 400)
+      const columns = error.message.match(/UNIQUE constraint failed: (.*)/)![1]
+        .split(', ')
+        .map(s => s.split('.')[1])
+      return c.json({
+        errors: Object.fromEntries(columns.map((column) => [column, ['Duplicated']]))
+      }, 400)
     }
     return c.text(String(error), 500)
   })

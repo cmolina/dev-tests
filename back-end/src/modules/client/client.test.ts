@@ -40,5 +40,5 @@ it('should reject duplicated emails', async () => {
   const res = await app.request('/clients', { method: 'post', body })
 
   expect(res.status).toBe(400)
-  expect(await res.json()).toEqual({ errors: [{ email: 'Duplicated' }] })
+  expect(await res.json()).toEqual({ errors: { email: ['Duplicated'] } })
 })

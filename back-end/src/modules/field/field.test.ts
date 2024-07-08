@@ -42,3 +42,13 @@ it('should persist new fields', async () => {
   expect(res.status).toBe(200)
   expect(await res.json()).toContainEqual(expect.objectContaining({ name: 'quaerat aut', location: '18764 Johathan Forks', farmer }))
 })
+
+it('should reject duplicated pairs of (name, location)', async () => {
+  const body = JSON.stringify({ name: 'Existing Name', location: 'Existing Location', farmer: farmer.id } as NewFieldPayload)
+  await app.request('/fields', { method: 'post', body })
+
+  const res = await app.request('/fields', { method: 'post', body })
+
+  expect(res.status).toBe(400)
+  expect(await res.json()).toEqual({ errors: { name: ['Duplicated'], location: ['Duplicated'] } })
+})
