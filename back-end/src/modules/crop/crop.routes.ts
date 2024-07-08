@@ -6,6 +6,7 @@ import { farmerSchema } from '../farmer/farmer.schema.js'
 import { clientSchema } from '../client/client.schema.js'
 import { fieldSchema } from '../field/field.schema.js'
 import { fruitSchema } from '../fruit/fruit.schema.js'
+import { cropSchema } from './crop.schema.js'
 
 const app = new Hono()
 
@@ -17,7 +18,7 @@ app.get('/', async (c) => {
 
 app.post('/', async (c) => {
   const db = await initORM()
-  const body = await c.req.json<Crop>()
+  const body = cropSchema.parse(await c.req.json())
   const crop = db.crop.create(body)
   await db.em.flush()
   return c.json(crop, 201)
@@ -44,7 +45,7 @@ app.post('/bulk-import', async (c) => {
       const client = await db.client.upsert(clientSchema.parse({ email: clientEmail, firstName: clientFirstName, lastName: clientLastName }))
       const fruit = await db.fruit.upsert(fruitSchema.parse({ name: fruitName, variety: fruitVariety }))
 
-      const crop = await db.crop.create({ client, fruit, field })
+      const crop = await db.crop.create(cropSchema.parse({ client, fruit, field }))
       crops.push(crop)
     } catch (error) {
       let message = String(error)
