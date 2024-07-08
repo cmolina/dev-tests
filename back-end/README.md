@@ -81,3 +81,5 @@ Ahora que tengo endpoints para leer y crear cada uno de los objetos con los que 
 La última restricción, _La combinación fruta variedad debe ser única_, no hace referencia a ningún otro objecto, lo que me hace suponer que `Fruit` debería incluir la propiedad `variety`, en lugar de ser una entidad independiente. Haré el refactor correspondiente.
 
 Para el requerimiento de la carga de un CSV, agregaré un nuevo endpoint, POST `/crops/bulk-import`.
+
+Noté que la fila 15 del csv de ejemplo contiene solo strings vacios. Supongo que debería validar que las propiedades sean strings no vacios, y que email tenga el formato correcto. Usaré `zod`.
