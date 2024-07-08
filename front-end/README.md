@@ -32,3 +32,8 @@ Se valorara:
 4. Separación de concerns.
 5. Manejo de errores.
 6. Estilos de la plataforma.
+
+
+# Implementando la solución
+
+Crearé un nuevo proyecto con SvelteKit.
