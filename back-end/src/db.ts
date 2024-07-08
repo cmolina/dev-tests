@@ -6,7 +6,6 @@ import {
 } from '@mikro-orm/sqlite'
 import config from './mikro-orm.config.js'
 import { Fruit } from './modules/fruit/fruit.entity.js'
-import { Variety } from './modules/variety/variety.entity.js'
 import { Client } from './modules/client/client.entity.js'
 import { Farmer } from './modules/farmer/farmer.entity.js'
 import { Field } from './modules/field/field.entity.js'
@@ -16,7 +15,6 @@ export interface Services {
   orm: MikroORM
   em: EntityManager
   fruit: EntityRepository<Fruit>
-  variety: EntityRepository<Variety>
   client: EntityRepository<Client>
   farmer: EntityRepository<Farmer>
   field: EntityRepository<Field>
@@ -39,7 +37,6 @@ export async function initORM(options?: Options): Promise<Services> {
     orm,
     em: orm.em,
     fruit: orm.em.getRepository(Fruit),
-    variety: orm.em.getRepository(Variety),
     client: orm.em.getRepository(Client),
     farmer: orm.em.getRepository(Farmer),
     field: orm.em.getRepository(Field),

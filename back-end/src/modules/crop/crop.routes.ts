@@ -6,7 +6,7 @@ const app = new Hono()
 
 app.get('/', async (c) => {
   const db = await initORM()
-  const crops = await db.crop.findAll({ populate: ['client', 'fruit', 'variety', 'field', 'field.farmer'] })
+  const crops = await db.crop.findAll({ populate: ['client', 'fruit', 'field', 'field.farmer'] })
   return c.json(crops)
 })
 

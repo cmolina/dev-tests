@@ -1,12 +1,16 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core'
+import { Entity, PrimaryKey, Property, Unique } from '@mikro-orm/core'
 
+@Unique({ properties: ['name', 'variety'] })
 @Entity()
 export class Fruit {
 
   @PrimaryKey()
   id!: number
 
-  @Property({ unique: true })
+  @Property()
   name!: string
+
+  @Property()
+  variety!: string
 
 }
