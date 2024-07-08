@@ -5,6 +5,7 @@ import varieties from './modules/variety/variety.routes.js'
 import clients from './modules/client/client.routes.js'
 import farmers from './modules/farmer/farmer.routes.js'
 import fields from './modules/field/field.routes.js'
+import crops from './modules/crop/crop.routes.js'
 import { initORM } from './db.js'
 import { RequestContext } from '@mikro-orm/core'
 
@@ -24,6 +25,7 @@ export async function bootstrap(test = false, port = 3000) {
   app.route('/clients', clients)
   app.route('/farmers', farmers)
   app.route('/fields', fields)
+  app.route('/crops', crops)
 
   console.log(`Server is running on port ${port}`)
 
