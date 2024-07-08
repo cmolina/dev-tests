@@ -27,6 +27,7 @@ export async function bootstrap(test = false, port = 3000) {
         errors: Object.fromEntries(columns.map((column) => [column, ['Duplicated']]))
       }, 400)
     }
+    console.error('Unexpected error', error)
     return c.text(String(error), 500)
   })
 

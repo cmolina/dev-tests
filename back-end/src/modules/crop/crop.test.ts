@@ -61,11 +61,13 @@ it('should bulk import from csv', async () => {
 
   expect(res.status).toBe(201)
   const { crops, errors } = await res.json() as { crops: Crop[], errors: string[] }
-  expect(errors).toHaveLength(10)
-  expect(errors[0]).toMatch('Row 15:')
+
+  expect(errors).toHaveLength(15)
+  expect(errors[1]).toMatch('Row 15:')
+
   expect(crops[0]).toMatchObject({
     client: { firstName: 'Lea', lastName: 'Cummerata', email: 'lcummerata@email.com' },
     fruit: { name: 'brocoli', variety: 'large' },
-    field: { name: 'voluptatem ', location: '139 Lucio Tunnel', farmer: { firstName: 'Madison', lastName: 'Treutel', email: 'mtreutel@email.com' } },
+    field: { name: 'voluptatem', location: '139 Lucio Tunnel', farmer: { firstName: 'Madison', lastName: 'Treutel', email: 'mtreutel@email.com' } },
   })
 })

@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import { initORM } from '../../db.js'
-import { Field } from './field.entity.js'
+import { fieldSchema } from './field.schema.js'
 
 const app = new Hono()
 
@@ -12,7 +12,7 @@ app.get('/', async (c) => {
 
 app.post('/', async (c) => {
   const db = await initORM()
-  const body = await c.req.json<Field>()
+  const body = fieldSchema.parse(await c.req.json())
   const field = db.field.create(body)
   await db.em.flush()
   return c.json(field, 201)

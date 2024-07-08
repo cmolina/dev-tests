@@ -1,5 +1,5 @@
 import { Entity, ManyToOne, PrimaryKey, Property, Unique } from '@mikro-orm/core'
-import { Farmer } from '../farmer/farmer.entity'
+import { Farmer } from '../farmer/farmer.entity.js'
 
 @Unique({ properties: ['name', 'location'] })
 @Entity()
