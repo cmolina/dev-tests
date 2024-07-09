@@ -37,3 +37,9 @@ Se valorara:
 # Implementando la solución
 
 Crearé un nuevo proyecto con SvelteKit.
+
+De el enunciado, la documentación de la API, entiendo debo crear una página que liste los objetos de cada modelo (Commodities, Harvests, Growers & Farms y Clients).
+
+Partiré con una route que muestre una tabla listando los commodities.
+
+Me di cuenta que la API tiene una definición OpenAPI 3 por lo que pude autogenerar un SDK con `openapi-typescript`.
