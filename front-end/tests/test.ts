@@ -25,6 +25,14 @@ it('should list growers', async ({ page }) => {
 	await assertTableIsCorrect(page, 'Growers', ['voluptate tempor dolore exercitation	s', 'Uahr0tc@FOcujErXbq.huy', 'anim, enim dolore dolore exercitation']);
 });
 
+it('should list clients', async ({ page }) => {
+	await page.goto('/');
+
+	await page.getByRole('link', { name: 'Clients' }).click()
+
+	await assertTableIsCorrect(page, 'Clients', ['Javier', 'Astudillo', 'jastudillo@elejemplo.com']);
+});
+
 async function assertTableIsCorrect(page: Page, tableName: string, cells: string[]) {
 	await expect(page.getByRole('heading', { name: tableName, level: 1 })).toBeVisible();
 	await expect(page.getByRole('table', { name: `List of ${tableName}` })).toBeVisible();
