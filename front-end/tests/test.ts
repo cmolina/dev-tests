@@ -33,6 +33,19 @@ it('should list clients', async ({ page }) => {
 	await assertTableIsCorrect(page, 'Clients', ['Javier', 'Astudillo', 'jastudillo@elejemplo.com']);
 });
 
+it('should create a harvest', async ({ page }) => {
+	await page.goto('/harvests/new');
+
+	await page.getByRole('combobox', { name: 'Grower' }).selectOption('string')
+	await page.getByRole('combobox', { name: 'Farm' }).selectOption('string')
+	await page.getByRole('combobox', { name: 'Client' }).selectOption('string')
+	await page.getByRole('combobox', { name: 'Commodity' }).selectOption('string')
+	await page.getByRole('combobox', { name: 'Variety' }).selectOption('string')
+	await page.getByRole('button', { name: 'Create new harvest' }).click()
+
+	await expect(page.locator('tbody tr:first-child')).toHaveAccessibleName(/^(string ){5}/)
+})
+
 async function assertTableIsCorrect(page: Page, tableName: string, cells: string[]) {
 	await expect(page.getByRole('heading', { name: tableName, level: 1 })).toBeVisible();
 	await expect(page.getByRole('table', { name: `List of ${tableName}` })).toBeVisible();

@@ -5,6 +5,9 @@
 </script>
 
 <h1>Harvests</h1>
+
+<a href="harvests/new">New harvest</a>
+
 {#await harvests}
 	<p>Loading…</p>
 {:then response}
