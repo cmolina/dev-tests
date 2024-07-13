@@ -53,6 +53,12 @@
 		height: 100%;
 	}
 
+	:global(main h1) {
+		font-weight: 700;
+		border-bottom: 1px solid #e5e5e5;
+		padding-bottom: 12px;
+	}
+
 	h1 {
 		font-weight: 700;
 		line-height: 48px;
