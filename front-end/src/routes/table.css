@@ -1,0 +1,52 @@
+main h1 {
+  font-weight: 700;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 12px;
+}
+
+table {
+  padding: 24px;
+  background-color: white;
+  border-radius: 24px;
+
+  width: 100%;
+  font-weight: 400;
+  border-collapse: separate;
+  border-spacing: 1px 8px;
+
+  thead {
+    height: 32px;
+    font-size: 12px;
+
+    th {
+      background-color: #E9F1FF;
+      text-align: left;
+    }
+  }
+
+  tbody {
+    font-size: 14px;
+
+    td {
+      background-color: white;
+    }
+  }
+
+  :is(th, td) {
+    padding: 8px 12px;
+  }
+
+  tr>:is(td, th):first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  tr>:is(td, th):last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  caption {
+    caption-side: bottom;
+  }
+}

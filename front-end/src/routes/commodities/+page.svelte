@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '../table.css';
 	import { onesta } from '$lib';
 
 	const commodities = onesta.GET('/v1/commodities/');

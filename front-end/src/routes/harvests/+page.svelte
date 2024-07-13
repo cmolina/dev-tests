@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '../table.css';
 	import { onesta } from '$lib';
 
 	const harvests = onesta.GET('/v1/harvests/');
@@ -6,7 +7,7 @@
 
 <h1>Harvests</h1>
 
-<a href="harvests/new">New harvest</a>
+<a class="button" href="harvests/new" style="float: right;">New harvest</a>
 
 {#await harvests}
 	<p>Loading…</p>
